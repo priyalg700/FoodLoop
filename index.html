@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodLoop - Share Surplus. Reduce Waste.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER: name, tagline, role selector and menu buttons -->
+  <header>
+    <h1>FoodLoop</h1>
+    <p>Share Surplus. Reduce Waste.</p>
+    <div class="roleBar">
+      <span>Current role:</span>
+      <select id="roleSelect" onchange="changeRole()">
+        <option value="donor">Donor</option>
+        <option value="recipient">Recipient</option>
+      </select>
+    </div>
+    <nav>
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('donor')">Donor</button>
+      <button onclick="showSection('recipient')">Recipient</button>
+      <button onclick="showSection('summary')">Status &amp; Summary</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- SECTION 1: HOME -->
+    <section id="home">
+      <h2>Welcome to FoodLoop</h2>
+      <p>FoodLoop helps food providers list edible surplus food so that verified recipient organizations can collect it on time.</p>
+      <p>Choose your role:</p>
+      <button onclick="chooseRole('donor')">I am a Donor</button>
+      <button onclick="chooseRole('recipient')">I am a Recipient</button>
+      <h3>How pickup is confirmed</h3>
+      <p>When a recipient accepts a listing, a 4-digit pickup code is created and shown only to the recipient. At pickup, the donor must type this code to confirm the food was collected. Then the recipient confirms that the food was received. This is a prototype of the idea, not real security.</p>
+      <p class="note">Note: This is a student prototype. All data shown is sample data.</p>
+    </section>
+
+    <!-- SECTION 2: DONOR (form to add food) -->
+    <section id="donor" class="hidden">
+      <h2>Donor: List Surplus Food</h2>
+      <div id="donorForm">
+        <label>Food item</label>
+        <input type="text" id="foodName" placeholder="e.g. Veg biryani (sample)">
+
+        <label>Quantity (number of meals)</label>
+        <input type="number" id="foodQty" placeholder="e.g. 20">
+
+        <label>Pickup location</label>
+        <input type="text" id="foodLocation" placeholder="e.g. Main Cafeteria">
+
+        <label>Pickup deadline</label>
+        <input type="time" id="foodDeadline">
+
+        <label>Handling notes</label>
+        <input type="text" id="foodNotes" placeholder="e.g. Cooked today, keep covered">
+
+        <button onclick="addListing()">Add Listing</button>
+      </div>
+      <p id="donorMessage"></p>
+    </section>
+
+    <!-- SECTION 3: RECIPIENT (cards with Accept button) -->
+    <section id="recipient" class="hidden">
+      <h2>Recipient: Available Food</h2>
+      <p id="recipientMessage"></p>
+      <div id="listingContainer"></div>
+    </section>
+
+    <!-- SECTION 4: STATUS AND SUMMARY -->
+    <section id="summary" class="hidden">
+      <h2>Status &amp; Summary</h2>
+      <div class="stats">
+        <div class="stat-box">Listings created: <strong id="totalListings">0</strong></div>
+        <div class="stat-box">Accepted: <strong id="totalAccepted">0</strong></div>
+        <div class="stat-box">Completed: <strong id="totalCompleted">0</strong></div>
+        <div class="stat-box">Meals redistributed (sample data): <strong id="totalQty">0</strong></div>
+      </div>
+      <p id="statusMessage"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Qty</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="statusTable"></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>FoodLoop | Team Food Savers | SDG 12 - Responsible Consumption and Production</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
